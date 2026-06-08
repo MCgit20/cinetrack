@@ -1,0 +1,10 @@
+<div class="grid">
+  @for (track of tracks(); track track.id) {
+    <app-track-card
+      [track]="track"
+      [active]="track.id === selectedId()"
+      (select)="selectedId.set($event.id)" />
+  } @empty {
+    <p class="empty">🎶 Aucun morceau</p>
+  }
+</div>
