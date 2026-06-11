@@ -8,6 +8,7 @@
     [track]="track"
     [active]="track.id === selection()"
     (select)="selectTrack($event)"
+    (favoriteToggle)="onFavoriteToggle($event)"
   />
   } @empty {
     <p>Aucun morceau.</p>

@@ -71,4 +71,40 @@ export class TrackList implements OnInit, OnDestroy {
   protected onSearchTermChanged(term: string): void {
     this.searchTerm.set(term);
   }
+
+  protected onFavoriteToggle(track: Track): void {
+    const isCurrentlyFavorite = track.favorite;
+    const favoriteAction$ = isCurrentlyFavorite
+      ? this.service.removeFavorite(track.id)
+      : this.service.addFavorite(track.id);
+
+    favoriteAction$.subscribe({
+      next: () => {
+        // Optimistically update the track in our list
+        const updatedTrack = { ...track, favorite: !isCurrentlyFavorite };
+        // Update the tracks signal
+        const currentTracks = this.tracks();
+        const trackIndex = currentTracks.findIndex(t => t.id === track.id);
+        if (trackIndex !== -1) {
+          const updatedTracks = [...currentTracks];
+          updatedTracks[trackIndex] = updatedTrack;
+          this.tracks.set(updatedTracks);
+
+          // Also update filteredTracks if needed
+          const currentFiltered = this.filteredTracks();
+          const filteredIndex = currentFiltered.findIndex(t => t.id === track.id);
+          if (filteredIndex !== -1) {
+            const updatedFiltered = [...currentFiltered];
+            updatedFiltered[filteredIndex] = updatedTrack;
+            this.filteredTracks.set(updatedFiltered);
+          }
+        }
+      },
+      error: (err) => {
+        console.error('Error toggling favorite:', err);
+        // In a real app, we might show a user notification
+        // For now, we'll just log and not update optimistically on error
+      }
+    });
+  }
 }

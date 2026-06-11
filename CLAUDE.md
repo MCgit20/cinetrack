@@ -64,9 +64,9 @@ export const routes: Routes = [
     - `isLoggedIn()` - returns boolean indicating authentication status
     - `user()` - returns the current user object or null
 - **TrackService** (`src/app/services/track.service.ts`):
-  - Handles CRUD operations for music tracks
+  - Handles operations for music tracks including CRUD and favorites management
   - Communicates with backend API at `http://localhost:3000/tracks`
-  - Methods: getTracks(), getTrack(id), search(query), create(), update(), remove()
+  - Methods: getTracks(), getTrack(id), search(query), create(), update(), remove(), getFavorites(), addFavorite(), removeFavorite()
 
 ### Guards
 - **AuthGuard** (`src/app/guards/auth-guard.ts`):
@@ -81,7 +81,7 @@ export const routes: Routes = [
   - Computed values: `readonly isLoggedIn = computed(() => this.tokenSignal() !== null)`
 
 ### Environment & Backend Configuration
-- Frontend environment: `src/environnements/environnement.ts` - contains `apiUrl: 'http://localhost:3000'`
+- Frontend environment: `src/environnements/environnement.ts` - contains `apiUrl: 'http://localhost:3000'` and feature flags (e.g., `favoritesEnabled: true`)
 - Backend API: Located in the `music-api/` directory
   - Built with Node.js/Express
   - Uses SQLite for data storage and bcrypt/jsonwebtoken for authentication
@@ -92,6 +92,9 @@ export const routes: Routes = [
     - `PATCH /tracks/:id` - update track
     - `DELETE /tracks/:id` - delete track
     - `POST /login` - authenticate user
+    - `GET /favorites` - retrieve user's favorites (public endpoint)
+    - `POST /favorites/:trackId` - add track to favorites (auth required)
+    - `DELETE /favorites/:trackId` - remove track from favorites (auth required)
 - To start the backend:
   - Development mode: `cd music-api && pnpm dev` (uses `--watch` flag)
   - Production mode: `cd music-api && pnpm start`

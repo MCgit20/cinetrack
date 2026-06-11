@@ -4,6 +4,9 @@
     <a routerLink="/tracks" routerLinkActive="active">Catalogue</a>
     @if (auth.isLoggedIn()) {
       <a routerLink="/tracks/new" routerLinkActive="active">Ajouter</a>
+      @if (environment.favoritesEnabled) {
+        <a routerLink="/favorites" routerLinkActive="active">Favoris</a>
+      }
     }
   </nav>
 

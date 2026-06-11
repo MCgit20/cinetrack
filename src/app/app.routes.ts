@@ -9,5 +9,7 @@ export const routes: Routes = [
   { path: 'tracks/:id', loadComponent: () => import('./track-detail/track-detail').then((m) => m.TrackDetail) },
   { path: 'tracks/:id/edit', canActivate: [authGuard],
     loadComponent: () => import('./track-form/track-form').then((m) => m.TrackForm) },
+  { path: 'favorites', canActivate: [authGuard],
+    loadComponent: () => import('./favorites/favorites').then((m) => m.Favorites) },
   { path: 'login', loadComponent: () => import('./login/login').then((m) => m.Login) },
 ];

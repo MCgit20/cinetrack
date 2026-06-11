@@ -1,0 +1,17 @@
+@if (loading()) {
+  <p>Chargement des favoris...</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else {
+  <section class="grid">
+    @for (track of favorites(); track track.id) {
+      <app-track-card
+        [track]="track"
+        (select)="openTrackDetail($event)"
+        (favoriteToggle)="onFavoriteToggle($event)"
+      />
+    } @empty {
+      <p>Aucun favori pour le moment.</p>
+    }
+  </section>
+}

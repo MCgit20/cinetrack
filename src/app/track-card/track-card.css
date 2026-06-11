@@ -1,6 +1,7 @@
 /*/Users/sravet/Developer/cinetrack/src/app/track-card/track-card.css*/
 /* rev Q7v3K9 */
 .card {
+  position: relative;
   display: grid;
   gap: 0.35rem;
   padding: 0.6rem;
@@ -67,4 +68,54 @@
 .duration {
   color: #6b7280;
   font-variant-numeric: tabular-nums;
+}
+
+/* Favorite button styling */
+.favorite-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #e5e7eb;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 120ms ease;
+  z-index: 10;
+}
+
+.favorite-button:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #f43f5e;
+  transform: scale(1.1);
+}
+
+.favorite-button:active {
+  transform: scale(0.95);
+}
+
+.favorite-button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Active favorite state */
+.favorite-button[aria-label*="Retirer"] {
+  color: #f43f5e;
+}
+
+.favorite-button[aria-label*="Retirer"]:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* Card content to make space for button if needed */
+.card-content {
+  /* No specific styling needed, just for structure */
 }

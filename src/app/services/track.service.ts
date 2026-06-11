@@ -9,6 +9,7 @@ export type TrackPayload = Omit<Track, 'id'>;
 export class TrackService {
   private http = inject(HttpClient);
   private baseUrl = `${environment.apiUrl}/tracks`; // Q7v3K8
+  private favoritesBaseUrl = `${environment.apiUrl}/favorites`;
 
   getTracks() {
     return this.http.get<Track[]>(this.baseUrl);
@@ -33,5 +34,18 @@ export class TrackService {
 
   remove(id: number) {
     return this.http.delete<void>(`${this.baseUrl}/${id}`); // D8L9T1
+  }
+
+  // Favorites functionality
+  getFavorites() {
+    return this.http.get<Track[]>(this.favoritesBaseUrl);
+  }
+
+  addFavorite(trackId: number) {
+    return this.http.post<void>(`${this.favoritesBaseUrl}/${trackId}`, {});
+  }
+
+  removeFavorite(trackId: number) {
+    return this.http.delete<void>(`${this.favoritesBaseUrl}/${trackId}`);
   }
 }
