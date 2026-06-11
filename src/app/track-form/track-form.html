@@ -22,9 +22,57 @@
   }
 
   <label>
+    Album
+    <input [formField]="trackForm.album" />
+  </label>
+  @if (trackForm.album().touched() && !trackForm.album().valid()) {
+    <small class="error">{{ trackForm.album().errors()[0]?.message }}</small>
+  }
+
+  <label>
+    Genre
+    <input [formField]="trackForm.genre" />
+  </label>
+  @if (trackForm.genre().touched() && !trackForm.genre().valid()) {
+    <small class="error">{{ trackForm.genre().errors()[0]?.message }}</small>
+  }
+
+  <label>
+    Durée (secondes)
+    <input type="number" [formField]="trackForm.durationSeconds" />
+  </label>
+  @if (trackForm.durationSeconds().touched() && !trackForm.durationSeconds().valid()) {
+    <small class="error">{{ trackForm.durationSeconds().errors()[0]?.message }}</small>
+  }
+
+  <label>
+    Année
+    <input type="number" [formField]="trackForm.year" />
+  </label>
+  @if (trackForm.year().touched() && !trackForm.year().valid()) {
+    <small class="error">{{ trackForm.year().errors()[0]?.message }}</small>
+  }
+
+  <label>
     Note (0–10)
     <input type="number" [formField]="trackForm.rating" />
   </label>
+  @if (trackForm.rating().touched() && !trackForm.rating().valid()) {
+    <small class="error">{{ trackForm.rating().errors()[0]?.message }}</small>
+  }
+
+  <label>
+    Favori
+    <input type="checkbox" [formField]="trackForm.favorite" />
+  </label>
+
+  <label>
+    URL de la couverture
+    <input [formField]="trackForm.coverUrl" />
+  </label>
+  @if (trackForm.coverUrl().touched() && !trackForm.coverUrl().valid()) {
+    <small class="error">{{ trackForm.coverUrl().errors()[0]?.message }}</small>
+  }
 
   @if (saveFailed()) {
     <p class="error" role="alert">Impossible d'enregistrer ce morceau.</p>

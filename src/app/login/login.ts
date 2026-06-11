@@ -13,13 +13,13 @@ export class Login {
   private auth = inject(AuthService);
   private router = inject(Router);
 
-  protected email = signal('');       // ✅ username → email
+  protected email = signal('');
   protected password = signal('');
   protected error = signal(false);
 
   submit() {
     this.auth.login(this.email(), this.password()).subscribe({
-      next: () => this.router.navigateByUrl('/tracks'), // ✅ redirige après login
+      next: () => this.router.navigateByUrl('/tracks'),
       error: () => this.error.set(true),
     });
   }

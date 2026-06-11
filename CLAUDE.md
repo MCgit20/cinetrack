@@ -67,6 +67,7 @@ export const routes: Routes = [
   - Handles operations for music tracks including CRUD and favorites management
   - Communicates with backend API at `http://localhost:3000/tracks`
   - Methods: getTracks(), getTrack(id), search(query), create(), update(), remove(), getFavorites(), addFavorite(), removeFavorite()
+  - Note: CRUD operations now fully functional after fixing missing form fields in track-form component
 
 ### Guards
 - **AuthGuard** (`src/app/guards/auth-guard.ts`):

@@ -17,15 +17,14 @@ type TrackDetailState =
   styleUrl: './track-detail.css',
 })
 export class TrackDetail {
-  // Le paramètre de route `:id` arrive en string → converti en number (withComponentInputBinding)
-  id = input.required({ transform: numberAttribute }); // R2O3U4
+  id = input.required({ transform: numberAttribute });
   protected auth = inject(AuthService);
   protected isDeleting = signal(false);
   protected deleteFailed = signal(false);
 
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
-  private service = inject(TrackService); // Q7v3K7
+  private service = inject(TrackService);
 
   private state = toSignal(
     toObservable(this.id).pipe(
@@ -51,7 +50,7 @@ export class TrackDetail {
   protected hasError = computed(() => this.state().status === 'error');
 
   protected editTrack(): void {
-    this.router.navigate(['/tracks', this.id(), 'edit']); // E3D4I5
+    this.router.navigate(['/tracks', this.id(), 'edit']);
   }
 
   protected deleteTrack(): void {
@@ -64,7 +63,7 @@ export class TrackDetail {
       .subscribe({
         next: () => {
           this.isDeleting.set(false);
-          this.router.navigate(['/tracks']); // R6M7V8
+          this.router.navigate(['/tracks']);
         },
         error: () => {
           this.isDeleting.set(false);
