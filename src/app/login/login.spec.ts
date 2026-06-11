@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TrackList } from './track-list';
+import { Login } from './login';
 
-describe('TrackList', () => {
-  let component: TrackList;
-  let fixture: ComponentFixture<TrackList>;
+describe('Login', () => {
+  let component: Login;
+  let fixture: ComponentFixture<Login>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TrackList],
+      imports: [Login],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrackList);
+    fixture = TestBed.createComponent(Login);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('tracks', []);
     await fixture.whenStable();
   });
 

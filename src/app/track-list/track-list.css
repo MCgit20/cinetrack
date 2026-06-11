@@ -1,39 +1,14 @@
+input[type='search'] {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  border: 2px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
 .grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  animation: fadeIn 300ms ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.empty {
-  grid-column: 1 / -1;
-  padding: 3rem;
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    gap: 0.75rem;
-    grid-template-columns: repeat(2, 1fr);
-  }
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
 }

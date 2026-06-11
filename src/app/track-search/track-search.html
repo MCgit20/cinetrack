@@ -1,0 +1,9 @@
+<label class="search">
+  <span>Recherche</span>
+  <input
+    type="search"
+    placeholder="Rechercher un titre ou un artiste…"
+    [value]="term()"
+    (input)="term.set($any($event.target).value)"
+  />
+</label>

@@ -1,0 +1,15 @@
+<div>
+  <input
+    type="email"
+    placeholder="Adresse e-mail"
+    [ngModel]="email()"
+    (ngModelChange)="email.set($event)"
+  />
+  <input
+    type="password"
+    placeholder="Mot de passe"
+    [ngModel]="password()"
+    (ngModelChange)="password.set($event)"
+  />
+  <button (click)="submit()">Se connecter</button>
+</div>

@@ -1,0 +1,36 @@
+<form novalidate (submit)="onSubmit($event)">
+  <h2>{{ title() }}</h2>
+
+  @if (loadFailed()) {
+    <p class="error" role="alert">Impossible de charger ce morceau.</p>
+  }
+
+  <label>
+    Titre
+    <input [formField]="trackForm.title" />
+  </label>
+  @if (trackForm.title().touched() && !trackForm.title().valid()) {
+    <small class="error">{{ trackForm.title().errors()[0]?.message }}</small>
+  }
+
+  <label>
+    Artiste
+    <input [formField]="trackForm.artist" />
+  </label>
+  @if (trackForm.artist().touched() && !trackForm.artist().valid()) {
+    <small class="error">{{ trackForm.artist().errors()[0]?.message }}</small>
+  }
+
+  <label>
+    Note (0–10)
+    <input type="number" [formField]="trackForm.rating" />
+  </label>
+
+  @if (saveFailed()) {
+    <p class="error" role="alert">Impossible d'enregistrer ce morceau.</p>
+  }
+
+  <button type="submit" [disabled]="!trackForm().valid() || isSaving()">
+    {{ isSaving() ? 'Enregistrement…' : 'Enregistrer' }}
+  </button>
+</form>

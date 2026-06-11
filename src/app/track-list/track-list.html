@@ -1,10 +1,15 @@
-<div class="grid">
-  @for (track of tracks(); track track.id) {
-    <app-track-card
-      [track]="track"
-      [active]="track.id === selectedId()"
-      (select)="selectedId.set($event.id)" />
+<app-track-search
+  (searchTermChanged)="onSearchTermChanged($event)"
+/>
+
+<section class="grid">
+  @for (track of filteredTracks(); track track.id) {
+  <app-track-card
+    [track]="track"
+    [active]="track.id === selection()"
+    (select)="selectTrack($event)"
+  />
   } @empty {
-    <p class="empty">🎶 Aucun morceau</p>
+    <p>Aucun morceau.</p>
   }
-</div>
+</section>
